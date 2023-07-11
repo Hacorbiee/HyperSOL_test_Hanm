@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
     private bool hasHitEnemy;
 
 
+
     void Start()
     {
         hasHitEnemy = false;
@@ -31,12 +32,19 @@ public class BulletController : MonoBehaviour
         }
         EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 
-        if (enemy!= null)
+
+        if (enemy!= null && SpawnEnemy.Instance.canHit)
         {
 
             enemy.TakeDame();
             hasHitEnemy = true;
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("Boom"))
+        {
+            hasHitEnemy = true;
+            Destroy(gameObject);
+        }
     }
+
 }

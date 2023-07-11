@@ -5,20 +5,18 @@ using UnityEngine;
 public class BGscroll : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 2f;
-    private Vector3 startpo;
+    public Renderer mesh;
+    public float speed = 0.1f;
 
     private void Start()
     {
-        startpo = transform.position;
+
     }
     private void Update()
     {
-        transform.Translate(Vector3.right * speed*Time.deltaTime);
-        if(transform.position.y< -21.7209)
-        {
-            transform.position = startpo;
-        }
+        Vector2 offset = mesh.material.mainTextureOffset;
+        offset = offset + new Vector2 (0, speed * Time.deltaTime);
+        mesh.material.mainTextureOffset = offset;
 
     }
 }

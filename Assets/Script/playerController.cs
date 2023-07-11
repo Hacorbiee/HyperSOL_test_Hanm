@@ -23,7 +23,7 @@ public class playerController : MonoBehaviour
     private Vector2 trany;
     [SerializeField] private float fireRate = 1f; // Tốc độ bắn đạn, 1 đạn/giây
     private float fireTimer = 0f; // Biến đếm thời gian
-    int curscore = 0;
+    public int curscore = 0;
     void Start()
     {
         trany = transform.position;
@@ -31,6 +31,7 @@ public class playerController : MonoBehaviour
         buttonSt.gameObject.SetActive(true);
         buttonQui.gameObject.SetActive(true);
         buttonP.gameObject.SetActive(false);
+
     }
     private void Awake()
     {
@@ -74,12 +75,11 @@ public class playerController : MonoBehaviour
         for (int i = 0; i < firepoint.Length; i++)
         {
             Instantiate(firepointPrefab, firepoint[i].position, firepoint[i].rotation);
-            curscore++;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Boom"))
         {
             Lose.gameObject.SetActive(true);
             Time.timeScale = 0f;

@@ -15,4 +15,11 @@ public class BoomSc : MonoBehaviour
     {
         Destroy(gameObject, 15);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
